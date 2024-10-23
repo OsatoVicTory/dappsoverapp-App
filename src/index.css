@@ -13,3 +13,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+:root {
+  --shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  --shadow-left: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+  --boxshadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+  --dropdownshadow: 0px 1.2px 8px rgba(0, 0, 0, 0.15);
+  --grey: #A5A4A4;
+  --bordergrey: #e2e8f0;
+  --white: #fff;
+  --bgblue: rgb(40, 145, 250);
+}
+input::placeholder, textarea::placeholder {
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+}
+.cursor {
+  cursor: pointer;
+}

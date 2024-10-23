@@ -1,197 +1,250 @@
-.App {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
+.App, .app {
+    width: 100%;
+    height: 100%;
 }
-.App .app {
-  width: min(100%, 850px);
-  height: 100%;
+.message-alert {
+    width: max-content;
+    height: max-content;
+    position: fixed;
+    z-index: 999999999999;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.5s ease-in-out;
+    background-color: var(--white);
+    box-shadow: var(--boxshadow);
+    padding: 10px 18px;
+    border-radius: 12px;
 }
-.app header {
-  width: 100%;
-  padding: 10px 20px;
-  justify-content: space-between;
-  border-bottom: 1px solid #e2e8f0;
+.message-alert.false {
+    top: -50%;
 }
-.app header, li, .li-img, .t-header, .activity-header {
-  display: flex;
-  align-items: center;
+.message-alert.true {
+    top: 10px;
 }
-h3, h2, ul, li {
-  margin: 0;
-  padding: 0;
+.alert {
+    width: max-content;
+    display: flex;
+    align-items: center;
 }
-.t-header-icon, .activity-header-icon {
-  width: 27px;
-  height: 24px;
+.alert-icon {
+    width: 15px;
+    height: 15px;
 }
-.user h3, .connected h3 {
-  padding: 10px;
+.alert-error {
+    color: rgb(242, 55, 55);
 }
-.wallet, .task-btn, .send-btn, .user-btn {
-  width: max-content;
-  padding: 10px 15px;
-  color: #fff;
-  font-size: 15px;
-  background-color: rgb(40, 145, 250);
-  border-radius: 10px;
+.alert-success {
+    color: rgb(35, 175, 35);
 }
-.user-btn {
-  padding: 6px 15px;
-}
-.user-btn.b {
-  margin-left: 12px;
-  color: black;
-  font-weight: 400;
-  border: 1px solid #a5a4a4;
-  background-color: #fff;
-}
-.cursor {
-  cursor: pointer;
-}
-.app main {
-  width: 100%;
-}
-main .first {
-  padding: 10px;
-}
-.home {
-  width: 100%;
-}
-.user {
-  margin-top: 12px;
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.user > div {
-  width: max-content;
-  display: flex;
-  align-items: center;
-}
-.no-user {
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-}
-.connected {
-  width: 100%;
-  padding: 10px;
-}
-ul, li {
-    list-style: none;
-}
-ul li {
-  width: 100%;
-  padding: 10px 0px;
-  padding-right: 10px;
-  border-bottom: 1px solid #e2e8f0;
-}
-.li-img {
-  width: 45px;
-  height: 45px;
-}
-.li-txt {
-  flex-grow: 2;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-}
-.txt-big {
-  font-size: 15px;
-  font-weight: 500;
-}
-.txt-small {
-  margin-top: 5px;
-  font-size: 14px;
-}
-.task-btn {
-  padding: 6px 15px;
-  margin-left: 10px;
-  border: none;
-}
-.task-done {
-  padding: 6px 15px;
-  margin-left: 10px;
-  border: 1px solid #e2e8f0;
-  width: max-content !important;
-  border-radius: 8px;
-}
-.user h3 {
-  padding: 0;
-}
-a {
-  text-decoration: none;
-}
-.li-img img {
-  width: 95%;
-  height: 95%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.message {
-  width: max-content !important;
-  height: max-content !important;
-  background-color: #fff;
-  padding: 15px;
-  position: fixed;
-  transition: all 0.6s ease-in-out;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.1);
-}
-.message.true {
-  top: 10px;
-}
-.cursor {
-  cursor: pointer;
-}
-.transfer {
-  width: 100%;
-  padding: 10px 20px;
-}
-.transfer .user {
-  padding: 8px 0px;
-  margin-top: 5px;
-}
-.transfer h2, .activity-header h2 {
-  margin: 10px 10px;
-}
-.transfer-field {
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.transfer-field input {
-  margin-top: 10px;
-  width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  font-family: inherit;
-}
-.send {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-}
-.send-btn {
-  padding: 10px 20px;
+.alert-txt {
+    margin-left: 10px;
+    font-size: 14.4px;
 }
 
-@media screen and (max-width: 750px) {
-  .user {
-    flex-direction: column;
-    justify-content: unset;
-    align-items: unset;
-  }
-  .user > div {
-    margin-top: 12px;
+.app header {
     width: 100%;
-  }
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    z-index: 99999999;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--bordergrey);
+    background-color: var(--white);
+}
+.app-header, .home-main ul, .hm {
+    padding: 10px 40px;
+}
+.app-logo {
+    width: 45px;
+    height: 45px;
+}
+.app-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.app-header h2 {
+    margin: 0;
+    padding: 0 15px;
+    font-size: 22.5px;
+}
+.app-header h2:hover {
+    text-decoration: underline;
+}
+.app-header-input-div {
+    flex: 3;
+    position: relative;
+}
+.app-header-input-div input {
+    flex: 3;
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--bordergrey);
+    font-size: 14px;
+    color: var(--grey);
+}
+.app-header input:focus {
+    border: 1px solid black;
+}
+.app-header-input-dropdown {
+    width: max(100%, 330px);
+    min-height: 63px;
+    max-height: 210px;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+    top: 130%;
+    left: 0px;
+    z-index: 99999;
+    overflow: hidden;
+    position: absolute;
+}
+.app-header-input-dropdown ul {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    padding-right: 3px;
+    list-style: none;
+}
+.ahid-li {
+    width: 100%;
+    padding: 12px;
+    border-top: 1px solid var(--bordergrey);
+    display: flex;
+    align-items: center;
+}
+.ahid-li:hover, .iad:hover {
+    background-color: #f5f5f5;
+}
+.ahid-icon-div {
+    width: 24px;
+    height: 24px;
+    background-color: var(--grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.ahid-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--white);
+}
+.ahid-li span {
+    margin-left: 12px;
+    font-size: 15px;
+    width: calc(100% - 40px);
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    white-space: nowrap;
+}
+.is-admin {
+    margin-left: 10px;
+    width: max-content;
+    position: relative;
+}
+.make-admin {
+    width: max-content;
+    border: 1px solid var(--bordergrey);
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+.mka-icon {
+    width: 15px;
+    height: 15px;
+    color: var(--grey);
+}
+.make-admin span {
+    margin-left: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3d3d3d;
+}
+.is-admin-dropdown {
+    width: 180px;
+    height: max-content;
+    position: absolute;
+    top: 120%;
+    right: 0px;
+    z-index: 9999999;
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    padding: 5px;
+}
+.iad {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--bordergrey);
+    padding: 10px;
+}
+.iad:first-child {
+    border-top: none;
+}
+.iad-icon {
+    width: 15px;
+    height: 15px;
+    color: var(--grey);
+}
+.iad span {
+    margin-left: 8px;
+    font-size: 14px;
+}
+.app-wallet {
+    min-width: 100px;
+    max-width: 120px;
+    margin-left: 15px;
+    padding: 8px;
+    background-color: var(--bgblue);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    border: none;
+}
+.aw-icon {
+    width: 15px;
+    height: 15px;
+    color: var(--white);
+}
+.aw-txt {
+    font-size: 13px;
+    margin-left: 6px;
+    color: var(--white);
+    white-space: nowrap;
+    font-weight: 500;
+}
+.app main {
+    width: 100%;
+}
+
+@media screen and (max-width: 771px) {
+    .app-header, .home-main ul, .hm {
+        padding: 10px 20px;
+    }
+    .app-header h2 {
+        display: none;
+    }
+    .app-wallet {
+        margin-left: 10px;
+    }
+    .app-header-input-div {
+        margin-left: 10px;
+    }
+    .make-admin span {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .app-header, .home-main ul, .hm {
+        padding: 10px 12px;
+    }
 }

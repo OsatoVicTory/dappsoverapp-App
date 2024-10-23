@@ -1,0 +1,229 @@
+.__Modal__Overlay__ {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(27, 27, 27, 0.9);
+    z-index: 999999999;
+}
+.Modal__Content {
+    width: min(100%, 600px);
+    background-color: var(--white);
+    max-height: 97%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    overflow-y: auto;
+}
+.Modal__Content.Users {
+    height: 450px;
+}
+.MCU-error, .MCU-no-data {
+    width: 100%;
+    height: 350px;
+}
+.MC-users {
+    width: 100%;
+}
+.MC-top {
+    width: 100%;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--bordergrey);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.MC-top span {
+    font-size: 18px;
+    font-weight: 600;
+}
+.Mc-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--grey);
+}
+.Modal__Content main, .Modal__Form, .Modal__Send {
+    width: 100%;
+}
+.Modal__Form {
+    margin-top: 12px;
+}
+.Modal__Form p {
+    margin: 12px 15px;
+    margin-top: 21px;
+    font-size: 15px;
+    text-align: center;
+}
+.input-field {
+    width: 100%;
+    padding: 10px;
+}
+.input-field-Preview {
+    width: 100%;
+    margin-bottom: 12px;
+}
+.input-field label {
+    font-size: 15px;
+    font-weight: 500;
+}
+.if-for-preview {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.if-preview-div {
+    width: max-content;
+    position: relative;
+}
+.if-preview-btn {
+    width: max-content;
+    padding: 7px 12px;
+    border-radius: 10px;
+    background-color: var(--bgblue);
+    color: var(--white);
+    font-size: 13.8px;
+    font-weight: 500;
+}
+.if-preview-describe {
+    position: absolute;
+    top: 118%;
+    right: 0px;
+    z-index: 9;
+    width: max-content;
+    padding: 4px 8px;
+    padding-bottom: 6px;
+    color: var(--white);
+    font-size: 13px;
+    background-color: var(--grey);
+    display: none;
+}
+.if-preview-div:hover .if-preview-describe {
+    display: block;
+}
+.input-field input, .input-field textarea {
+    width: 100%;
+    margin-top: 12px;
+    border: 1px solid var(--bordergrey);
+    border-radius: 8px;
+    padding: 10px;
+    padding-bottom: 12px;
+    background: none;
+    resize: none;
+    font-size: 15px;
+    font-weight: 330;
+    font-family: inherit;
+    outline: none;
+}
+.input-field textarea {
+    min-height: 120px;
+    max-height: 180px;
+}
+.input-field input:focus, .input-field textarea:focus {
+    border: 1.2px solid black;
+}
+.input-field input::placeholder, .input-field textarea::placeholder {
+    color: #686868;
+}
+.Modal__Send {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 15px;
+    border-top: 1px solid var(--bordergrey);
+    margin-top: 10px;
+}
+.Modal__Send.no-border {
+    border: none;
+}
+.Mc-send {
+    width: max-content;
+    padding: 7px 15px;
+    border-radius: 12px;
+    background-color: var(--bgblue);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 500;
+}
+.Mcs-icon {
+    width: 15px;
+    height: 15px;
+    color: var(--white);
+}
+.Mcs-txt {
+    margin-left: 10px;
+}
+.Users {
+    padding: 12px;
+    padding-top: 0px;
+}
+.Users .MC-top {
+    background-color: var(--white);
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    padding-top: 15px;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+}
+.users-li {
+    width: 100%;
+    height: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 6px;
+}
+.user-li {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--bordergrey);
+}
+.user-li:first-child {
+    border-top: none;
+}
+.ul-icon-div {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ul-icon-div.sk-loading {
+    background-color: transparent;
+}
+.ul-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--white);
+}
+.ul-txt {
+    margin-left: 15px;
+    width: calc(100% - 36px);
+}
+.ul-txt > div {
+    width: 100%;
+    height: 16px;
+}
+.ul-txt span {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    white-space: nowrap;
+    margin-top: 0px;
+}
+.ult-address {
+    font-size: 16px;
+}
+.ult-time {
+    font-size: 14px;
+    color: var(--grey);
+    margin-top: 3px;
+}

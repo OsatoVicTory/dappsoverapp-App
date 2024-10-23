@@ -1,0 +1,171 @@
+.Home, .home-main {
+    width: 100%;
+}
+.hm {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hm h3 {
+    font-size: 21px;
+    margin: 0;
+    padding: 0;
+}
+.hm-h3 {
+    width: 150px;
+    height: 21px;
+}
+.create-class {
+    background-color: var(--bgblue);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+.create-class.sk-loading {
+    width: 120px;
+    height: 21px;
+    padding: 0px;
+    border-radius: 6px;
+    background-color: transparent;
+}
+/* home-main ul padding is set in App.css so that it can gave same with the header */
+.home-main ul {
+    width: 100%;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.class-li {
+    width: 330px;
+    margin-top: 21px;
+    border: 1.5px solid var(--bordergrey);
+    padding: 0px;
+    border-radius: 10px 10px 0px 0px;
+}
+.class-li:hover {
+    background-color: #f5f5f5;
+}
+.class-li.padded {
+    height: 0px;
+    opacity: 0px;
+    border: none;
+    margin-top: 0px;
+    padding: 0px;
+}
+.cli-image-with-h3 {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    border-radius: 10px 10px 0px 0px;
+}
+.cli-image-with-h3 div {
+    border-radius: inherit;
+}
+.cli-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.cli-abs {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(33, 33, 36);
+    opacity: 0.7;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    /* display: none; */
+}
+.cli-txt {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    padding-top: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    bottom: 0px;
+    right: 0px;
+}
+.cli-txt h3 {
+    margin: 0px 0px;
+    margin-top: 0px;
+    padding: 0px;
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    white-space: nowrap;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    color: var(--white);
+}
+.cli-txt span {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    white-space: nowrap;
+    font-size: 13.8px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: var(--white);
+}
+.cli-desc {
+    margin-top: 0px;
+    padding: 10px 15px;
+    padding-bottom: 30px;
+    width: 100%;
+}
+.cli-desc.sk-loading {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+}
+.cli-desc.sk-loading > div {
+    width: 100%;
+    height: 15px;
+    margin-top: 5px;
+}
+.cli-desc span {
+    margin: 0px;
+    width: 100%;
+    min-height: 15px;
+    display: -webkit-box;
+    white-space: pre-wrap;
+    word-break: break-word;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.4rem;
+}
+/* for the main page image text use this */
+/*     text-shadow: 0 1px 3px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .3); */
+@media screen and (max-width: 1080px) {
+    .class-li {
+        width: min(420px, 48%);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .class-li {
+        width: min(420px, 100%);
+    }
+}
