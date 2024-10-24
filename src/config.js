@@ -1,6 +1,6 @@
 export const contractAddress = "0x9e33ad7b1be31e5f11c27858d4ad9baaecc30287";
 
-export const FRONTEND_URL = 'http://localhost:3000';
+export const FRONTEND_URL = 'https://dappsoverapp.netlify.app';
 
 const image = 'https://lh3.googleusercontent.com/hr_crs_themes/ACP_IjEUeuVRrv9YzvMNWfi_5eVIwIJHWGAGR2jjgDC3juf5l3TuJeX2uKzkr04C9kNmYKa0vi0F0YK-O461DUrhEp1m0-s-KMQPzaQNRS0cuI53c6N-8nhnL04=s1280';
 
