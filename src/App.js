@@ -34,7 +34,7 @@ function App() {
     const signer = await provider.getSigner();
     const address = await signer.getAddress();
     setContract({ signer, address });
-    setMessage({ status: 'success', message: 'Welcome back' });
+    setMessageFn(setMessage, { status: 'success', message: 'Welcome back' });
     setConnecting(false);
   };
 
