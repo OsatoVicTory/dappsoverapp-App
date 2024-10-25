@@ -4,7 +4,7 @@ import './class.css';
 import './material.css';
 import './loading.css';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { createContractInstance, formatDate, parseJSONStringData, parseStringData, setMessageFn } from '../../utils';
+import { createContractInstance, formatDate, parseBigInt, parseJSONStringData, parseStringData, setMessageFn } from '../../utils';
 import { useNavigate, useParams } from 'react-router-dom';
 import Previewer from '../../components/previewer';
 import NoData from '../../components/nodata';
@@ -37,9 +37,10 @@ const ClassRoomMaterial = ({ classRoom, materials, setClassRoom, setMaterials, l
     const fetchClassAndMaterial = async () => {
         try {
             const { signer } = contractRef.current;
+            const bigIntId = parseBigInt(id - 0);
             const contractInstance = await createContractInstance(signer);
             if(!loaded.classRoom) {
-                const class_data = await contractInstance.getClass(id - 0);
+                const class_data = await contractInstance.getClass(bigIntId);
                 const parsed_data = parseJSONStringData(class_data);
                 if(!parsed_data?.name) throw new Error(classRoomError);
                 setClassRoom(parsed_data);
@@ -50,7 +51,7 @@ const ClassRoomMaterial = ({ classRoom, materials, setClassRoom, setMaterials, l
                 if(!material_data) throw new Error(materialError); 
                 setMaterial(material_data);
             } else {
-                const material_data = parseStringData(await contractInstance.getMaterialByIndex(id - 0, material_id - 0));
+                const material_data = parseStringData(await contractInstance.getMaterialByIndex(bigIntId, parseBigInt(material_id - 0)));
                 if(!material_data.main_title && !material.title) throw new Error(materialError); 
                 setMaterial(material_data);
             }
@@ -67,11 +68,12 @@ const ClassRoomMaterial = ({ classRoom, materials, setClassRoom, setMaterials, l
         try {
             // we would for sure have had contract data in ref state
             const { signer } = contractRef.current;
+            const bigIntId = parseBigInt(id - 0);
             const contractInstance = await createContractInstance(signer);
-            const last_index = await contractInstance.getMaterialLastIndex(id - 0);
+            const last_index = await contractInstance.getMaterialLastIndex(bigIntId);
             const data = [];
             for(let index = 0; index <= last_index; index++) {
-                const material_data = await contractInstance.getMaterialByIndex(id - 0, index);
+                const material_data = await contractInstance.getMaterialByIndex(bigIntId, parseBigInt(index));
                 const parsed_data = parseStringData(material_data);
                 if(!parsed_data.main_title && !parsed_data.title) continue;
                 data.push({ _id: index, ...parsed_data });
@@ -234,11 +236,16 @@ const ClassRoomMaterial = ({ classRoom, materials, setClassRoom, setMaterials, l
                                         </div>
 
                                         <div className='mm-content'>
-                                            {material.site && <div className='preview-content-link-wrapper'>
+                                            <div className='preview-content-link-wrapper'>
                                                 <div className='preview-content-link'>
-                                                    <Previewer data={material} />
+                                                    <Previewer data={material.site ? material : 
+                                                        { 
+                                                            title: material.link.split('://')[1]?.split('.')[0], 
+                                                            site: material.link, link: material.link 
+                                                        }
+                                                    } />
                                                 </div>
-                                            </div>}
+                                            </div>
                                             <div className='mmc' ref={contentRef}></div>
                                         </div>
                                     </div>

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import './styles.css';
 import { AiOutlineClose } from "react-icons/ai";
-import { createContractInstance, fetchUrlPrieview, parseStringData, setMessageFn, validLink } from "../../utils";
+import { createContractInstance, fetchUrlPrieview, parseBigInt, parseStringData, setMessageFn, validLink } from "../../utils";
 import { AppContext } from "../../components/context";
 import { MdSend } from "react-icons/md";
 import Previewer from "../../components/previewer";
@@ -51,7 +51,7 @@ const CreateMaterial = ({ closeModal, id, setMaterials }) => {
             // console.log('strData', stringifiedData);
             // console.log('parsedStrData', parseStringData(stringifiedData));
             const contractInstance = await createContractInstance(contract.signer);
-            const tx = await contractInstance.addMaterial(stringifiedData, id - 0);
+            const tx = await contractInstance.addMaterial(stringifiedData, parseBigInt(id - 0));
             await tx.wait();
             setMaterials((prev) => [{ ...parseStringData(stringifiedData), _id: prev.length }, ...prev]);
             setMessageFn(setMessage, { status: 'success', message: 'Material uploaded successfully.' });
@@ -83,7 +83,7 @@ const CreateMaterial = ({ closeModal, id, setMaterials }) => {
 
         setPreviewLoading(true);
         try {
-            const res = await fetchUrlPrieview(link, 120000);
+            const res = await fetchUrlPrieview(link, 180000);
             // console.log('preview data', res);
             setPreviewData({ ...res.data, link });
             setPreviewLoading(false);
@@ -120,7 +120,7 @@ const CreateMaterial = ({ closeModal, id, setMaterials }) => {
                                     <div className="if-preview-btn cursor" onClick={() => firePreview()}>
                                         {!previewLoading ? 'Preview' : 'Previewing...'}
                                     </div>
-                                    <div className="if-preview-describe">Get preview of link. N.B might take up to 2 mins</div>
+                                    <div className="if-preview-describe">Get preview of link. N.B might take up to 3 mins</div>
                                 </div>
                             </div>
                             <input placeholder="Enter a valid link with https" onChange={handleChange} name="link" />

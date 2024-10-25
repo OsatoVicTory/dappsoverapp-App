@@ -42,6 +42,7 @@ const LandingPage = () => {
         if (!window.ethereum) return setMessageFn(setMessage, { status: 'error', message: 'Install Metamask extension!' });
 
         loadContract().catch(error => {
+            console.log(error);
             if(error.message === "No crypto wallet found. Please install MetaMask.") {
                 setMessageFn(setMessage, { status: 'error', message: error.message });
             } else setMessageFn(setMessage, { status: 'error', message: 'Error connecting wallet' });

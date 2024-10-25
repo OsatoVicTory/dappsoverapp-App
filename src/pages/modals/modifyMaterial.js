@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import './styles.css';
 import { AiOutlineClose } from "react-icons/ai";
-import { createContractInstance, fetchUrlPrieview, parseStringData, setMessageFn, validLink } from "../../utils";
+import { createContractInstance, fetchUrlPrieview, parseBigInt, parseStringData, setMessageFn, validLink } from "../../utils";
 import { AppContext } from "../../components/context";
 import { MdSend } from "react-icons/md";
 import Previewer from "../../components/previewer";
@@ -55,7 +55,7 @@ const ModifyMaterial = ({ closeModal, material, setMaterials, id, material_id })
             const stringifiedData = `[${input_data}%x2${preview_data}%x2createdAt=${material.createdAt}%x2edited=${date}]`;
             // console.log('strData', stringifiedData);
             const contractInstance = await createContractInstance(contract.signer);
-            const tx = await contractInstance.modifyMaterialByIndex(id - 0, material_id - 0, stringifiedData);
+            const tx = await contractInstance.modifyMaterialByIndex(parseBigInt(id - 0), parseBigInt(material_id - 0), stringifiedData);
             await tx.wait();
             setMaterials((prev) => {
                 const arr = [];
@@ -100,7 +100,7 @@ const ModifyMaterial = ({ closeModal, material, setMaterials, id, material_id })
         linkRef.current = link;
 
         try {
-            const res = await fetchUrlPrieview(link, 120000);
+            const res = await fetchUrlPrieview(link, 180000);
             // console.log('preview data', res);
             setPreviewData({ ...res.data, link });
             setPreviewLoading(false);
@@ -138,7 +138,7 @@ const ModifyMaterial = ({ closeModal, material, setMaterials, id, material_id })
                                     <div className="if-preview-btn cursor" onClick={() => firePreview()}>
                                         {!previewLoading ? 'Preview' : 'Previewing...'}
                                     </div>
-                                    <div className="if-preview-describe">Get preview of link. N.B might take up to 2 mins</div>
+                                    <div className="if-preview-describe">Get preview of link. N.B might take up to 3 mins</div>
                                 </div>
                             </div>
                             <input placeholder="Enter a valid link with https" onChange={handleChange} 
@@ -153,7 +153,7 @@ const ModifyMaterial = ({ closeModal, material, setMaterials, id, material_id })
                     <div className="Modal__Send">
                         <div className="Mc-send cursor" onClick={() => handleSend()}>
                             <MdSend className="Mcs-icon" />
-                            <span className="Mcs-txt">{sendLoading ? 'Creating...' : 'Create'}</span>
+                            <span className="Mcs-txt">{sendLoading ? 'Modifying...' : 'Modify'}</span>
                         </div>
                     </div>
                 </main>

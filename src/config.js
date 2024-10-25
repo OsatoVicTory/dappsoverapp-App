@@ -1,4 +1,6 @@
-export const contractAddress = "0x9e33ad7b1be31e5f11c27858d4ad9baaecc30287";
+export const testcontractAddress = "0x6661fb869ea48e16c8535f42a4bcc63d3b14e483";
+
+export const contractAddress = "0x055b29f38684b05e04685f24136ad8893a2b2599";
 
 export const FRONTEND_URL = 'https://dappsoverapp.netlify.app';
 

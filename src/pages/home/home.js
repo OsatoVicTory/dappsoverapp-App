@@ -4,7 +4,7 @@ import HomeLoading from "./homeloading";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../components/context";
 import CreateClass from "../modals/createClass";
-import { createContractInstance, parseJSONStringData, setMessageFn } from "../../utils";
+import { createContractInstance, parseBigInt, parseJSONStringData, setMessageFn } from "../../utils";
 import ErrorPage from "../../components/error";
 import NoData from "../../components/nodata";
 
@@ -19,13 +19,14 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [classes, setClasses] = useState([]);
-    const [classesShowing, setClassesShowing] = useState([]);
+    const [classesShowing, setClassesShowing] = useState([...classRooms]);
 
     const navigate = useNavigate();
 
     const fetchClasses = async () => {
         // use length, if no length then just make loading appear, its all a sharade
         if(classRooms.length === 0) setLoading(true);
+        else setLoading(false);
         setError(false);
 
         try {
@@ -36,7 +37,7 @@ const Home = () => {
             // console.log('lst', last_index);
             const data = [];
             for(let index = 0; index <= last_index; index++) {
-                const class_data = await contractInstance.getClass(index - 0);
+                const class_data = await contractInstance.getClass(parseBigInt(index));
                 // console.log('class', class_data, 'class_index', index);
                 const parsed_data = parseJSONStringData(class_data);
                 // console.log('class_parsed', parsed_data);

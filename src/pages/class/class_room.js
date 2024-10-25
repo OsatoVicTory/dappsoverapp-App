@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './class.css';
 import './loading.css';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { createContractInstance, formatDate, parseJSONStringData, parseStringData, setMessageFn } from '../../utils';
+import { createContractInstance, formatDate, parseBigInt, parseJSONStringData, parseStringData, setMessageFn } from '../../utils';
 import { FRONTEND_URL } from '../../config';
 import { AppContext } from '../../components/context';
 import { MdContentCopy, MdOutlineArrowBack, MdOutlineAssignment } from 'react-icons/md';
@@ -31,7 +31,8 @@ const ClassRoomMain = ({ classRoom, materials, setClassRoom, setMaterials, loade
             const { signer } = contractRef.current;
             const contractInstance = await createContractInstance(signer);
             if(!loaded.classRoom) {
-                const class_data = await contractInstance.getClass(id - 0);
+                const bigIntId = parseBigInt(id - 0);
+                const class_data = await contractInstance.getClass(bigIntId);
                 // console.log('cl_data', class_data);
                 const parsed_data = parseJSONStringData(class_data);
                 // console.log('parsed_class_data', parsed_data);
@@ -54,10 +55,12 @@ const ClassRoomMain = ({ classRoom, materials, setClassRoom, setMaterials, loade
             // we would for sure have had contract data in ref state
             const { signer } = contractRef.current;
             const contractInstance = await createContractInstance(signer);
-            const last_index = await contractInstance.getMaterialLastIndex(id - 0);
+            const bigIntId = parseBigInt(id - 0);
+            const last_index = await contractInstance.getMaterialLastIndex(bigIntId);
             const data = [];
+            // we can iterate correctly over bigInt numbers
             for(let index = 0; index <= last_index; index++) {
-                const material_data = await contractInstance.getMaterialByIndex(id - 0, index);
+                const material_data = await contractInstance.getMaterialByIndex(bigIntId, parseBigInt(index));
                 // console.log('single material data', material_data);
                 const parsed_data = parseStringData(material_data);
                 // console.log('single material data parsed', parsed_data);

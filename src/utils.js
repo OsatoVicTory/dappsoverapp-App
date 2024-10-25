@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Contract } from "ethers";  // Import Contract directly.
+import { ethers, Contract } from "ethers";  // Import Contract directly.
 import abi from './contractABI.json';
 import { contractAddress } from "./config";
 
@@ -7,6 +7,10 @@ export const fetchUrlPrieview = async (url, timeout = 60000) => {
     const serverUrl = 'https://backend-web-scraping.onrender.com/scrape/h/anything';
     return axios.post(serverUrl, { url, timeout });
 }; 
+
+export const parseBigInt = (uint8) => {
+    return ethers.getBigInt(uint8, "myBigInt");
+};
 
 export const fetchUrlPrieviewLocal = async (url, timeout = 60000) => {
     const serverUrl = 'http://localhost:3030/scrape/h/anything';
